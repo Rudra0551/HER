@@ -72,7 +72,7 @@ sec.classList.add("active");
 // SURPRISE
 function showSurprise(){
 let box = document.getElementById("surpriseBox");
-let video = document.getElementById("surpriseVideo");
+let music = document.getElementById("bgMusic");
 
 box.style.display = "flex";
 box.style.opacity = "0";
@@ -80,9 +80,11 @@ box.style.transition = "1s";
 
 setTimeout(()=>{
 box.style.opacity = "1";
-video.play();
 },100);
+
+music.volume = 0.2;
 }
+
 
 // TYPE LOVE LETTER
 let text = "Anushka, from the moment you came into my life, everything became beautiful. I promise to love you and cherish us forever❤️";
