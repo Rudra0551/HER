@@ -10,6 +10,9 @@ section {
 padding:120px 20px;
 }
 
+.ok{
+    width:fit-content;
+}
 .hero {
 height:100vh;
 display:flex;
@@ -41,16 +44,22 @@ margin:10px;
 animation: slide 6s infinite alternate;
 }
 
-.cards div {
-background:white;
-display:flex;
-flex-wrap:wrap;
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:20px;
+}
 
-padding:20px;
-margin:10px;
-border-radius:20px;
-box-shadow:0 0 15px pink;
-transition:.3s;
+.cards div {
+    background: white;
+    padding: 20px;
+    margin: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 15px pink;
+    transition: .3s;
+    flex: 0 1 250px;
+    box-sizing: border-box;
 }
 
 .cards div:hover {
