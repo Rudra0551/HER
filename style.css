@@ -1,11 +1,6 @@
 body {
 margin:0;
 font-family: 'Poppins', sans-serif;
---accent: 255,77,109; /* default accent (r,g,b) */
---accent-2: 255,105,180;
---bg1: 255,209,220;
---bg2: 255,230,240;
-background: linear-gradient(rgb(var(--bg1)), rgb(var(--bg2)));
 overflow-x:hidden;
 text-align:center;
 }
@@ -315,7 +310,6 @@ body.silhouette .cards div {
     box-shadow: 0 6px 24px rgba(0,0,0,0.45);
 }
 
-/* Vintage theme */
 body.vintage {
     --accent: 112,64,28;    /* deep brown */
     --accent-2: 180,120,80; /* warm secondary */
