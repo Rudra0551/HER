@@ -39,7 +39,10 @@ document.getElementById("popup").style.display = "flex";
 }
 
 function closePopup(){
-document.getElementById("popup").style.display = "none";
+	const popup = document.getElementById("popup");
+	popup.style.display = "none";
+	const img = document.getElementById('popupImg');
+	if(img){ img.src = ''; img.style.display = 'none'; }
 }
 
 
@@ -81,10 +84,21 @@ box.style.transition = "1s";
 setTimeout(()=>{
 box.style.opacity = "1";
 },100);
-
-music.volume = 0.2;
 }
 
+
+
+// Pause background music when the surprise iframe is interacted with (user starts video)
+document.addEventListener('DOMContentLoaded', ()=>{
+	const videoFrame = document.getElementById('surpriseVideo');
+	if(!videoFrame) return;
+	videoFrame.addEventListener('pointerdown', ()=>{
+		if(typeof music !== 'undefined' && music && !music.paused){
+			music.pause();
+			if(vinyl) vinyl.classList.remove('rotate');
+		}
+	});
+});
 
 // TYPE LOVE LETTER
 let text = "Anushka, from the moment you came into my life, everything became beautiful. I promise to love you and cherish us forever❤️";
@@ -148,6 +162,21 @@ function themeFromHeaderImage() {
 }
 
 window.addEventListener('load', themeFromHeaderImage);
+
+
+function openPhotoPopup(message, imgSrc){
+	const popup = document.getElementById('popup');
+	const text = document.getElementById('popupText');
+	const img = document.getElementById('popupImg');
+	if(imgSrc){ img.src = imgSrc; img.style.display = 'block'; }
+	if(text){ text.innerText = message || ''; }
+	popup.style.display = 'flex';
+}
+
+// initialize photo reveals after DOM ready
+document.addEventListener('DOMContentLoaded', ()=>{
+	setupPhotoReveals();
+});
 
 /* Position cards precisely along an SVG heart path on large screens */
 function placeCardsAlongHeart(){
