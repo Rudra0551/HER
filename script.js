@@ -74,6 +74,7 @@ sec.classList.add("active");
 
 // SURPRISE
 function showSurprise(){
+
 let box = document.getElementById("surpriseBox");
 let music = document.getElementById("bgMusic");
 
@@ -84,24 +85,50 @@ box.style.transition = "1s";
 setTimeout(()=>{
 box.style.opacity = "1";
 },100);
+
+music.pause();
+
+
 }
+
+function closeSurprise(){
+let box = document.getElementById("surpriseBox");
+let music = document.getElementById("bgMusic");
+
+box.style.display = "none";
+
+// if you used pause:
+music.play();
+
+// if you used volume:
+music.volume = 1;
+}
+
+document.getElementById("surpriseBox").addEventListener("click", function(e){
+if(e.target === this){
+closeSurprise();
+}
+});
+
+
+
 
 
 
 // Pause background music when the surprise iframe is interacted with (user starts video)
-document.addEventListener('DOMContentLoaded', ()=>{
-	const videoFrame = document.getElementById('surpriseVideo');
-	if(!videoFrame) return;
-	videoFrame.addEventListener('pointerdown', ()=>{
-		if(typeof music !== 'undefined' && music && !music.paused){
-			music.pause();
-			if(vinyl) vinyl.classList.remove('rotate');
-		}
-	});
-});
+// document.addEventListener('DOMContentLoaded', ()=>{
+// 	const videoFrame = document.getElementById('surpriseVideo');
+// 	if(!videoFrame) return;
+// 	videoFrame.addEventListener('pointerdown', ()=>{
+// 		if(typeof music !== 'undefined' && music && !music.paused){
+// 			music.pause();
+// 			if(vinyl) vinyl.classList.remove('rotate');
+// 		}
+// 	});
+// });
 
-// TYPE LOVE LETTER
-let text = "Anushka, from the moment you came into my life, everything became beautiful. I promise to love you and cherish us forever❤️";
+
+let text = "Anushka, life was normal before you… now every moment has a little bit of your light in it.. I promise to love you and cherish us forever and if not forever then until the end of time..❤️";
 let i=0;
 
 function typeWriter(){
@@ -119,15 +146,15 @@ function themeFromHeaderImage() {
 	if (!img) return;
 
 	function applyColors(r,g,b){
-		// set CSS vars on root
+		
 		const root = document.documentElement;
 		root.style.setProperty('--accent', `${r},${g},${b}`);
-		// slightly lighter/darker accent for shadows
+		
 		const r2 = Math.min(255, Math.round(r * 1.15));
 		const g2 = Math.min(255, Math.round(g * 1.15));
 		const b2 = Math.min(255, Math.round(b * 1.15));
 		root.style.setProperty('--accent-2', `${r2},${g2},${b2}`);
-		// background gradient: mix with white for soft pastel
+		
 		const mix = (c)=> Math.round(c + (255 - c) * 0.65);
 		root.style.setProperty('--bg1', `${mix(r)},${mix(g)},${mix(b)}`);
 		root.style.setProperty('--bg2', `${mix(r)},${mix(g)},${mix(b)}`);
@@ -151,7 +178,7 @@ function themeFromHeaderImage() {
 			r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
 			applyColors(r,g,b);
 		} catch(e){
-			// fallback: do nothing
+			
 			console.warn('Theme sampling failed', e);
 		}
 	}
@@ -173,12 +200,10 @@ function openPhotoPopup(message, imgSrc){
 	popup.style.display = 'flex';
 }
 
-// initialize photo reveals after DOM ready
 document.addEventListener('DOMContentLoaded', ()=>{
 	setupPhotoReveals();
 });
 
-/* Position cards precisely along an SVG heart path on large screens */
 function placeCardsAlongHeart(){
 	const cards = document.querySelector('.cards');
 	if(!cards) return;
@@ -264,13 +289,11 @@ function toggleVintage(){
 	else applyVintageTheme();
 }
 
-// wire toggle button
 document.addEventListener('DOMContentLoaded', ()=>{
 	const btn = document.getElementById('themeToggle');
 	if(btn) btn.addEventListener('click', toggleVintage);
 });
 
-// user asked to try vintage — apply it after load so it overrides sampling
 window.addEventListener('load', ()=>{
 	applyVintageTheme();
 });

@@ -458,6 +458,24 @@ display:block;
 animation: slideLR 6s ease-in-out infinite alternate;
 }
 
+.counter-video{
+width:340px;
+border-radius:2px;
+display:block;
+margin:10px auto;
+mix-blend-mode: multiply;
+}
+
+.counter {
+    padding-top:60px !important;
+    padding-bottom:60px !important;
+}
+
+.counter h2 {
+    margin-bottom:20px;
+}
+
+
 @media (max-width:900px){
 .floating-video__el{ width:72%; max-width:420px; }
 }
